@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<h:form id="searchForm" styleClass="container_24">
+			<p:messages id="msgSearch" showDetail="true" closable="true" />
+
+			<p:panel id="filterPanel" toggleable="true"
+				styleClass="panel clearfix" header="#{wds['fieldset.data']}">
+				<p:outputLabel for="name" value="#{wds['user.nome']}"
+					styleClass="grid_4" />
+				<p:inputText value="#{userController.entitySearch.nome}" id="name"
+					styleClass="grid_9" label="#{wds['user.nome']}" />
+				<p:outputLabel for="login" value="#{wds['user.login']}"
+					styleClass="grid_2" />
+				<p:inputText value="#{userController.entitySearch.login}" id="login"
+					styleClass="grid_9" label="#{wds['user.login']}" />
+			</p:panel>
+			<p:outputPanel styleClass="clearfix">
+				<p:commandButton value="#{wds['button.search']}"
+					icon="ui-icon-search" id="searchCommandButton"
+					update="resultDataTable" process="@this name login"
+					action="#{userController.find}" style="left: 31%; width: 20%;"
+					styleClass="grid_6 push_10">
+					<p:blockUI block="resultDataTable" trigger="searchCommandButton">
+						<h:outputText value="#{wds['blockui.loading.text']}" />
+						<br />
+						<h:graphicImage library="images"
+							name="#{wds['blockui.loading.img']}" />
+					</p:blockUI>
+				</p:commandButton>
+			</p:outputPanel>
+			<p:panel id="resultPanelFind" toggleable="true"
+				styleClass="panel clearfix" header="#{wds['fieldset.results']}">
+				<p:dataTable id="resultDataTable" paginator="true" var="item"
+					value="#{userController.lazyModel}" first="0"
+					draggableColumns="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					currentPageReportTemplate="{currentPage} #{wds['of']} {totalPages}"
+					rows="#{wds['table.rows']}" paginatorPosition="bottom"
+					rowsPerPageTemplate="#{wds['table.rowsPerPageTemplate']}"
+					lazy="true" emptyMessage="#{wds['emptyTable']}">
+					<p:column headerText="#{wds['table.columns.options']}"
+						style="width: 10%">
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
+							action="#{userController.loadToEdit}" immediate="true"
+							update=":userTabView">
+							<f:setPropertyActionListener
+								target="#{userController.entityUpdate}" value="#{item}" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							oncomplete="confirmDialogFind.show()">
+							<f:setPropertyActionListener
+								target="#{userController.entityCreate}" value="#{item}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="#{wds['user.nome']}" styleClass="collumnLeft"
+						width="40%">
+						<h:outputLabel value="#{item.nome}" />
+					</p:column>
+					<p:column headerText="#{wds['user.login']}"
+						styleClass="collumnLeft" width="10%">
+						<h:outputLabel value="#{item.login}" />
+					</p:column>
+					<p:column headerText="#{wds['user.email']}"
+						styleClass="collumnLeft" width="40%">
+						<h:outputLabel value="#{item.email}" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+			<p:confirmDialog id="confirmDialogFind"
+				message="#{wds['dialog.deleteConfirmation.message']}"
+				header="#{wds['dialog.deleteConfirmation.header']}"
+				widgetVar="confirmDialogFind" appendToBody="true" severity="alert">
+				<div style="text-align: center;">
+					<p:commandButton id="confirmFind"
+						value="#{wds['dialog.optionYes']}"
+						oncomplete="confirmDialogFind.hide()"
+						action="#{userController.delete}"
+						onclick="javascript:window.location='#userTabView'"
+						update="resultDataTable msgSearch" process="@this" />
+					<p:commandButton id="declineFind"
+						onclick="confirmDialogFind.hide()"
+						value="#{wds['dialog.optionNo']}" type="button" />
+				</div>
+			</p:confirmDialog>
+		</h:form>
+	</h:body>
+</ui:composition>

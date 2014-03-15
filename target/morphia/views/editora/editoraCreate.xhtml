@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<h:form id="createForm" styleClass="container_24">
+			<p:messages id="msgCreate" showDetail="true" closable="true" />
+			<p:panel id="dataPanel" styleClass="panel clearfix"
+				header="#{wds['fieldset.data']}">
+				<p:outputLabel value="#{wds['editora.nome']}" for="name"
+					styleClass="grid_4" />
+				<p:inputText id="name"
+					value="#{editoraController.entityCreate.nome}" required="true"
+					label="#{wds['editora.nome']}" styleClass="grid_20" />
+			</p:panel>
+
+			<p:panel id="contatoInfPanel" styleClass="panel clearfix"
+				header="#{wds['editora.info']}">
+				<p:outputLabel value="#{wds['contatoInf.fone']}" for="fone"
+					styleClass="grid_4" />
+				<p:inputMask mask="(99)9999-9999" id="fone"
+					value="#{editoraController.entityCreate.contatoInfo.telefone}"
+					required="true" styleClass="grid_4"
+					label="#{wds['contatoInf.fone']}" />
+				<p:outputLabel value="#{wds['contatoInf.email']}" for="email"
+					styleClass="grid_2" />
+				<p:inputText id="email"
+					value="#{editoraController.entityCreate.contatoInfo.email}"
+					required="true" styleClass="grid_14"
+					label="#{wds['contatoInf.email']}">
+					<f:validator validatorId="emailValidator" />
+				</p:inputText>
+			</p:panel>
+
+			<p:outputPanel styleClass="clearfix">
+				<p:commandButton value="#{wds['tab.create']}" icon="ui-icon-check"
+					update="@form" styleClass="grid_6 push_8" validateClient="true"
+					action="#{editoraController.save}" />
+			</p:outputPanel>
+
+		</h:form>
+
+		<script type="text/javascript">
+			PrimeFaces.validator['emailValidator'] = {
+				pattern : /\S+@\S+/,
+				validate : function(element, value) {
+					if (!this.pattern.test(value)) {
+						throw {
+							summary : 'Erro de validação',
+							detail : value + ' não é um email válido.'
+						}
+					}
+				}
+			};
+		</script>
+
+	</h:body>
+</ui:composition>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/views/index.xhtml">
+
+	<ui:define name="content">
+		<h:outputStylesheet name="layout.css" library="css" />
+		<h:outputStylesheet name="grid.css" library="css" />
+
+		<p:tabView id="autorTabView" dynamic="false" widgetVar="autorTabs">
+
+			<p:ajax event="tabClose" listener="#{autorController.onTabClose}"
+				process="@this" />
+
+			<p:tab id="autorCreateTab"
+				title="#{wds['tab.create2']} #{wds['of']} #{wds['autor']}">
+				<ui:include src="autorCreate.xhtml" />
+			</p:tab>
+			<p:tab id="autorSearchTab"
+				title="#{wds['tab.search']} #{wds['autor']}">
+				<ui:include src="autorSearch.xhtml" />
+			</p:tab>
+			<p:tab id="autorUpdateTab" closable="true" rendered="false"
+				binding="#{autorController.tabUpdate}"
+				title="#{wds['tab.update']} #{wds['autor']}">
+				<ui:include src="autorUpdate.xhtml" />
+			</p:tab>
+		</p:tabView>
+	</ui:define>
+
+</ui:composition>

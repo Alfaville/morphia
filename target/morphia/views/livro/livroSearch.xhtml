@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<h:form id="searchForm" styleClass="container_24">
+			<p:messages id="msgSearch" showDetail="true" closable="true" />
+
+			<p:panel id="filterPanel" toggleable="true"
+				styleClass="panel clearfix" header="#{wds['fieldset.data']}">
+				<p:outputLabel for="titulo" value="#{wds['livro.titulo']}"
+					styleClass="grid_4" />
+				<p:inputText value="#{livroController.entitySearch.titulo}"
+					id="titulo" styleClass="grid_10" label="#{wds['livro.titulo']}" />
+
+				<p:outputLabel for="isbn" value="#{wds['livro.isbn']}"
+					styleClass="grid_2" />
+				<p:inputText value="#{livroController.entitySearch.isbn}" id="isbn"
+					styleClass="grid_8" label="#{wds['livro.isbn']}" />
+
+				<p:outputLabel value="#{wds['editora']}" for="editoraAutoComplete"
+					styleClass="grid_4" />
+				<p:autoComplete id="editoraAutoComplete" minQueryLength="3"
+					emptyMessage="#{wds['emptyAutocomplete']}"
+					value="#{livroController.entitySearch.editora}" cache="true"
+					forceSelection="true" dropdown="true" label="#{wds['editora']}"
+					scrollHeight="200" styleClass="grid_20"
+					converter="autocompleteConverter"
+					completeMethod="#{editoraController.autocomplete}" var="item"
+					itemLabel="#{item.nome}" itemValue="#{item}" maxResults="10" />
+
+				<p:outputLabel value="#{wds['autor']}" for="autorAutoComplete"
+					styleClass="grid_4" />
+				<p:autoComplete id="autorAutoComplete" minQueryLength="3"
+					emptyMessage="#{wds['emptyAutocomplete']}" multiple="true"
+					value="#{livroController.autores}" cache="true"
+					label="#{wds['autor']}" scrollHeight="200" styleClass="grid_20"
+					converter="autoCompleteCollectorConverter" forceSelection="true"
+					dropdown="true" completeMethod="#{autorController.autocomplete}"
+					var="item" itemLabel="#{item.nome}" itemValue="#{item}"
+					maxResults="10" />
+
+				<p:fieldset legend="#{wds['livro.anoPublicacao']}"
+					styleClass="grid_20 push_3">
+					<p:outputLabel for="initalDate" value="#{wds['livro.initialDate']}"
+						styleClass="grid_4" />
+					<p:inputMask mask="9999" id="initalDate"
+						value="#{livroController.initialDate}"
+						label="#{wds['livro.initialDate']}" styleClass="grid_3" />
+					<p:outputLabel for="finalDate" value="#{wds['livro.finalDate']}"
+						styleClass="grid_4" />
+					<p:inputMask mask="9999" id="finalDate"
+						value="#{livroController.finalDate}"
+						label="#{wds['livro.finalDate']}" styleClass="grid_3" />
+				</p:fieldset>
+			</p:panel>
+
+			<p:outputPanel styleClass="clearfix">
+				<p:commandButton value="#{wds['button.search']}"
+					icon="ui-icon-search" id="searchCommandButton"
+					update="resultDataTable" process="@this filterPanel"
+					action="#{livroController.find}" style="left: 31%; width: 20%;"
+					styleClass="grid_6 push_9">
+					<p:blockUI block="resultDataTable" trigger="searchCommandButton">
+						<h:outputText value="#{wds['blockui.loading.text']}" />
+						<br />
+						<h:graphicImage library="images"
+							name="#{wds['blockui.loading.img']}" />
+					</p:blockUI>
+				</p:commandButton>
+			</p:outputPanel>
+
+			<p:panel id="resultPanelFind" toggleable="true"
+				styleClass="panel clearfix" header="#{wds['fieldset.results']}">
+				<p:dataTable id="resultDataTable" paginator="true" var="item"
+					value="#{livroController.lazyModel}" first="0"
+					draggableColumns="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					currentPageReportTemplate="{currentPage} #{wds['of']} {totalPages}"
+					rows="#{wds['table.rows']}" paginatorPosition="bottom"
+					rowsPerPageTemplate="#{wds['table.rowsPerPageTemplate']}"
+					lazy="true" emptyMessage="#{wds['emptyTable']}">
+					<p:column headerText="#{wds['table.columns.options']}"
+						style="width: 10%">
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
+							action="#{livroController.loadToEdit}" immediate="true"
+							update=":livroTabView">
+							<f:setPropertyActionListener
+								target="#{livroController.entityUpdate}" value="#{item}" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							oncomplete="confirmDialogFind.show()">
+							<f:setPropertyActionListener
+								target="#{livroController.entityCreate}" value="#{item}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="#{wds['livro.titulo']}"
+						styleClass="collumnLeft" width="20%">
+						<h:outputLabel value="#{item.titulo}" />
+					</p:column>
+					<p:column headerText="#{wds['livro.isbn']}"
+						styleClass="collumnLeft" width="15%">
+						<h:outputLabel value="#{item.isbn}" />
+					</p:column>
+					<p:column headerText="#{wds['livro.anoPublicacao']}"
+						styleClass="collumnLeft" width="5%">
+						<h:outputLabel value="#{item.anoPublicacao}" />
+					</p:column>
+					<p:column headerText="#{wds['editora']}" width="20%"
+						styleClass="collumnLeft">
+						<h:outputLabel value="#{item.editora.nome}" />
+					</p:column>
+					<p:column headerText="#{wds['autorList']}" width="20%"
+						styleClass="collumnLeft">
+						<ui:repeat var="autor" value="#{item.autores}">
+							<h:outputLabel value="#{autor.nome}" />
+							<br />
+						</ui:repeat>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+			<p:confirmDialog id="confirmDialogFind"
+				message="#{wds['dialog.deleteConfirmation.message']}"
+				header="#{wds['dialog.deleteConfirmation.header']}"
+				widgetVar="confirmDialogFind" appendToBody="true" severity="alert">
+				<div style="text-align: center;">
+					<p:commandButton id="confirmFind"
+						value="#{wds['dialog.optionYes']}"
+						oncomplete="confirmDialogFind.hide()"
+						action="#{livroController.delete}"
+						onclick="javascript:window.location='#livroTabView'"
+						update="resultDataTable msgSearch" process="@this" />
+					<p:commandButton id="declineFind"
+						onclick="confirmDialogFind.hide()"
+						value="#{wds['dialog.optionNo']}" type="button" />
+				</div>
+			</p:confirmDialog>
+		</h:form>
+	</h:body>
+</ui:composition>

@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<div style="float: left; height: 48px;">
+			<h:graphicImage library="images" name="icon.jpg" width="75%" />
+			<p:outputLabel value="v1.0.0"
+				style=" color: #1C94C4 !important; left: 205px; position: absolute; top: 25px;" />
+		</div>
+
+		<div style="float: right;">
+			<p:commandButton styleClass="user" id="UserCommandButton"
+				value="#{loginController.user.nome}" icon="ui-icon-person" />
+			<p:commandButton styleClass="logout" alt="#{wds['login.exit']}"
+				title="#{wds['login.exit']}" 
+				action="#{loginController.logout}" icon="ui-icon-power" />
+		</div>
+	</h:form>
+</ui:composition>

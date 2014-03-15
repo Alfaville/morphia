@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/views/index.xhtml">
+
+	<ui:define name="content">
+		<h:outputStylesheet name="layout.css" library="css" />
+		<h:outputStylesheet name="grid.css" library="css" />
+
+		<p:tabView id="editoraTabView" dynamic="false" widgetVar="editoraTabs">
+
+			<p:ajax event="tabClose" listener="#{editoraController.onTabClose}"
+			 process="@this"/>
+
+			<p:tab title="#{wds['tab.create2']} #{wds['of']} #{wds['editora']}">
+				<ui:include src="editoraCreate.xhtml" />
+			</p:tab>
+			<p:tab title="#{wds['tab.search']} #{wds['editora']}">
+				<ui:include src="editoraSearch.xhtml" />
+			</p:tab>
+			<p:tab closable="true" rendered="false"
+				binding="#{editoraController.tabUpdate}"
+				title="#{wds['tab.update']} #{wds['editora']}">
+				<ui:include src="editoraUpdate.xhtml" />
+			</p:tab>
+		</p:tabView>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<h:form id="createForm" styleClass="container_24">
+			<p:messages id="msgCreate" binding="#{msg}" showDetail="true"
+				closable="true" />
+			<p:panel id="dataPanel" styleClass="panel clearfix"
+				header="#{wds['fieldset.data']}">
+				<p:outputLabel for="title" value="#{wds['livro.titulo']}"
+					styleClass="grid_4" />
+				<p:inputText id="title"
+					value="#{livroController.entityCreate.titulo}" required="true"
+					label="#{wds['livro.titulo']}" styleClass="grid_20" />
+				<p:outputLabel for="isbn" value="#{wds['livro.isbn']}"
+					styleClass="grid_4" />
+				<p:inputText id="isbn" value="#{livroController.entityCreate.isbn}"
+					required="true" label="#{wds['livro.isbn']}" styleClass="grid_12" />
+				<p:outputLabel for="anoPublicacao"
+					value="#{wds['livro.anoPublicacao']}" styleClass="grid_6" />
+				<p:inputMask id="anoPublicacao" mask="9999"
+					value="#{livroController.entityCreate.anoPublicacao}"
+					required="true" label="#{wds['livro.anoPublicacao']}"
+					styleClass="grid_2" />
+				<p:outputLabel value="#{wds['editora']}" for="editoraAutoComplete"
+					styleClass="grid_4" />
+				<p:autoComplete id="editoraAutoComplete" minQueryLength="3"
+					emptyMessage="#{wds['emptyAutocomplete']}"
+					value="#{livroController.entityCreate.editora}" cache="true"
+					forceSelection="true" dropdown="true" label="#{wds['editora']}"
+					scrollHeight="200" styleClass="grid_20" required="true"
+					converter="autocompleteConverter"
+					completeMethod="#{editoraController.autocomplete}" var="item"
+					itemLabel="#{item.nome}" itemValue="#{item}" maxResults="10" />
+
+				<div class="clear" />
+
+				<p:panel id="autorPanel" styleClass="panel clearfix"
+					header="#{wds['addAutores']}">
+					<p:outputLabel value="#{wds['autor']}" for="autorAutoComplete"
+						styleClass="grid_4" />
+					<p:autoComplete id="autorAutoComplete" minQueryLength="3"
+						emptyMessage="#{wds['emptyAutocomplete']}"
+						widgetVar="autorComplete" value="#{livroController.autor}"
+						cache="true" forceSelection="true" dropdown="true"
+						label="#{wds['autor']}" scrollHeight="200" styleClass="grid_20"
+						converter="autocompleteConverter"
+						completeMethod="#{autorController.autocomplete}" var="item"
+						itemLabel="#{item.nome}" itemValue="#{item}" maxResults="10" />
+
+					<p:outputPanel styleClass="clearfix" style="margin-bottom: 5px">
+						<p:commandButton id="addCommandButton" widgetVar="buttonAdd"
+							process="@this autorAutoComplete" styleClass="grid_6 push_9"
+							style="margin: 10px 0px 15px 0px"
+							actionListener="#{livroController.addLivro}"
+							update="dataTableAutor updateCommandButton" icon="ui-icon-disk"
+							value="#{wds['button.add']}" />
+					</p:outputPanel>
+					<script>
+						buttonAdd.jq.click(function() {
+							autorComplete.jq.children().val(null);
+						});
+					</script>
+
+					<p:dataTable id="dataTableAutor" var="item"
+						emptyMessage="#{wds['emptyTable']}" paginator="false"
+						value="#{livroController.autores}">
+						<p:column headerText="#{wds['table.columns.options']}"
+							style="text-align: center; width: 10%">
+							<p:commandButton icon="ui-icon-trash"
+								update="dataTableAutor :livroTabView:createForm:updateCommandButton"
+								process="@this" title="#{wds['table.option.delete']}">
+								<p:collector removeFrom="#{livroController.autores}"
+									value="#{item}" />
+							</p:commandButton>
+						</p:column>
+						<p:column id="columnName" style="width: 90%; text-align:left"
+							headerText="#{wds['autor.name']}">
+							<h:outputLabel value="#{item.nome}" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</p:panel>
+
+			<p:outputPanel styleClass="clearfix" style="margin-top: 10px">
+				<p:commandButton id="updateCommandButton" styleClass="grid_6 push_7"
+					action="#{livroController.save}" icon="ui-icon-disk"
+					value="#{wds['button.create']}" update="@form"
+					disabled="#{livroController.autores.isEmpty() ? true : false}" />
+				<p:commandButton id="cleanCommandButton" type="reset"
+					styleClass="grid_6 push_7" icon="ui-icon-arrowrefresh-1-w"
+					value="#{wds['button.clean']}">
+				</p:commandButton>
+			</p:outputPanel>
+
+		</h:form>
+	</h:body>
+</ui:composition>

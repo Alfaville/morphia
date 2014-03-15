@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/views/index.xhtml">
+
+	<ui:define name="content">
+		<h:outputStylesheet name="layout.css" library="css" />
+		<h:outputStylesheet name="grid.css" library="css" />
+
+		<p:tabView id="livroTabView" dynamic="false" widgetVar="livroTabs">
+			<p:tab title="#{wds['tab.create2']} #{wds['of']} #{wds['livro']}">
+				<ui:include src="livroCreate.xhtml" />
+			</p:tab>
+			<p:tab title="#{wds['tab.search']} #{wds['livro']}">
+				<ui:include src="livroSearch.xhtml" />
+			</p:tab>
+			<p:tab id="livroUpdateTab" closable="true" rendered="false"
+				binding="#{livroController.tabUpdate}"
+				title="#{wds['tab.update']} #{wds['livro']}">
+				<ui:include src="livroUpdate.xhtml" />
+			</p:tab>
+		</p:tabView>
+	</ui:define>
+
+</ui:composition>

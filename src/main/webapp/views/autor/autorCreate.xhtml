@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<h:form id="createForm" styleClass="container_24">
+			<p:messages id="msgCreate" showDetail="true" closable="true" />
+
+			<p:panel id="dataPanel" toggleable="true" styleClass="panel clearfix"
+				header="#{wds['fieldset.data']}">
+
+				<p:outputLabel value="#{wds['autor.name']}" for="name"
+					styleClass="grid_4" />
+				<p:inputText id="name" value="#{autorController.entityCreate.nome}"
+					required="true" label="#{wds['autor.name']}" styleClass="grid_19" />
+			</p:panel>
+
+			<p:outputPanel styleClass="clearfix" style="margin-bottom: 5px">
+				<p:commandButton id="addCommandButton" process="@this name"
+					styleClass="grid_6 push_9"
+					style="margin: 10px 0px 15px 0px"
+					update="dataTableAutor, updateCommandButton, name, msgCreate"
+					icon="ui-icon-disk" value="#{wds['button.add']}"
+					action="#{autorController.reinit}">
+					<p:collector addTo="#{autorController.all}"
+						value="#{autorController.entityCreate}" />
+				</p:commandButton>
+			</p:outputPanel>
+
+			<p:dataTable id="dataTableAutor" var="item"
+				emptyMessage="#{wds['emptyTable']}" paginator="true"
+				value="#{autorController.all}">
+				<p:column headerText="#{wds['table.columns.options']}"
+					style="text-align: center; width: 10%">
+					<p:commandButton icon="ui-icon-trash"
+						update="dataTableAutor, :autorTabView:createForm:updateCommandButton"
+						process="@this" title="#{wds['table.option.delete']}">
+						<p:collector removeFrom="#{autorController.all}" value="#{item}" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil"
+						update="dataTableAutor, :autorTabView:createForm:name"
+						process="@this" title="#{wds['table.option.edit']}">
+						<f:setPropertyActionListener
+							target="#{autorController.entityCreate.nome}"
+							value="#{item.nome}" />
+						<p:collector removeFrom="#{autorController.all}" value="#{item}" />
+					</p:commandButton>
+				</p:column>
+				<p:column id="columnName" style="width: 90%; text-align:left"
+					headerText="#{wds['autor.name']}">
+					<h:outputLabel value="#{item.nome}" />
+				</p:column>
+			</p:dataTable>
+
+			<p:outputPanel styleClass="clearfix" style="margin-top: 10px">
+				<p:commandButton id="updateCommandButton" styleClass="grid_6 push_7"
+					action="#{autorController.save}" icon="ui-icon-disk"
+					value="#{wds['button.create']}" update="@form" process="@this"
+					disabled="#{autorController.all.isEmpty() ? true : false}" />
+				<p:commandButton id="cleanCommandButton" type="reset"
+					styleClass="grid_6 push_7" icon="ui-icon-arrowrefresh-1-w"
+					value="#{wds['button.clean']}">
+				</p:commandButton>
+			</p:outputPanel>
+
+		</h:form>
+	</h:body>
+</ui:composition>

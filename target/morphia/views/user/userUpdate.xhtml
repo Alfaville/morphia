@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<h:form id="updateForm" styleClass="container_24">
+			<p:messages id="msgUpdate" showDetail="true" closable="true" />
+			<p:panel id="dataPanel" styleClass="panel clearfix"
+				header="#{wds['fieldset.data']}">
+				<p:outputLabel for="nome" value="#{wds['user.nome']}"
+					styleClass="grid_4" />
+				<p:inputText id="nome" value="#{userController.entityUpdate.nome}"
+					required="true" label="#{wds['user.nome']}" styleClass="grid_20" />
+
+				<p:outputLabel for="email" value="#{wds['user.email']}"
+					styleClass="grid_4" />
+				<p:inputText id="email" value="#{userController.entityUpdate.email}"
+					required="true" label="#{wds['user.email']}" styleClass="grid_20">
+					<f:validator validatorId="emailValidator" />
+				</p:inputText>
+
+				<p:outputLabel for="login" value="#{wds['user.login']}"
+					styleClass="grid_4" />
+				<p:inputText id="login" value="#{userController.entityUpdate.login}"
+					required="true" label="#{wds['user.login']}" styleClass="grid_4" />
+
+				<p:outputLabel for="pass" value="#{wds['user.pass']}"
+					styleClass="grid_2" />
+				<p:password id="pass" value="#{userController.pass}"
+					match="passwordConfirmationPassword" feedback="true"
+					required="true" styleClass="grid_5"
+					validatorMessage="#{wds['password.validatorMessage']}"
+					promptLabel="#{wds['password.promptLabel']}"
+					weakLabel="#{wds['password.weakLabel']}"
+					goodLabel="#{wds['password.goodLabel']}"
+					strongLabel="#{wds['password.strongLabel']}"
+					label="#{lbl['systemUser.password']}" />
+				<p:outputLabel for="passwordConfirmationPassword"
+					styleClass="grid_4 push_2"
+					value="#{wds['user.passwordConfirmation']}" />
+				<p:password id="passwordConfirmationPassword" required="true"
+					styleClass="grid_5 push_1" />
+			</p:panel>
+
+			<p:outputPanel styleClass="clearfix">
+				<p:commandButton value="#{wds['button.update']}"
+					icon="ui-icon-check" update="@form" styleClass="grid_6 push_8"
+					validateClient="true" action="#{userController.update}" />
+				<p:commandButton value="#{wds['button.cancel']}" type="button"
+					icon="ui-icon-cancel" styleClass="grid_4 push_8 ui_submitButton"
+					onclick="userTabs.remove(userTabs.getActiveIndex())" />
+			</p:outputPanel>
+		</h:form>
+
+		<script type="text/javascript">
+			PrimeFaces.validator['emailValidator'] = {
+				pattern : /\S+@\S+/,
+				validate : function(element, value) {
+					if (!this.pattern.test(value)) {
+						throw {
+							summary : 'Erro de validação',
+							detail : value + ' não é um email válido.'
+						}
+					}
+				}
+			};
+		</script>
+
+	</h:body>
+</ui:composition>

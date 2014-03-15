@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>#{wds['system.description']}</title>
+	<h:outputStylesheet name="login.css" library="css" />
+	<h:outputStylesheet name="grid.css" library="css" />
+</h:head>
+
+<h:body>
+	<div class="container">
+		<section id="content"> <h:form id="morphia_login_form"
+			prependId="false">
+			<h1>#{wds['autentication']}</h1>
+			<p:messages id="messages" />
+			<div class="imageLogo">
+				<h:graphicImage library="images" name="login.jpg" width="275" height="175"/>
+			</div>
+			<div>
+				<div class="div-menu-search">
+					<p:inputText id="loginUser" required="true"
+						value="#{loginController.login}" label="#{wds['user.login']}"
+						title="#{wds['user.login']}" />
+					<p:watermark for="loginUser" value="#{wds['user.login']}" />
+
+				</div>
+			</div>
+			<div>
+				<p:password id="loginPass" required="true"
+					label="#{wds['user.pass']}" title="#{wds['user.pass']}"
+					value="#{loginController.pass}" feedback="false" />
+				<p:watermark for="loginPass" value="#{wds['user.pass']}" />
+			</div>
+
+			<div>
+				<p:commandButton id="login_loginButton_button" styleClass="button"
+					action="#{loginController.dologin}" value="#{wds['button.login']}"
+					update="messages, @form" process="@form" />
+				<p:commandButton id="login_clearButton_button" styleClass="button"
+					type="reset" value="#{wds['button.clean']}"
+					update="messages, @form" process="@form" />
+			</div>
+		</h:form> <br />
+		<br />
+
+		</section>
+
+	</div>
+
+</h:body>
+</html>

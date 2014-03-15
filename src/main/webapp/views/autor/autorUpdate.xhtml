@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+	<h:body>
+		<h:form id="editForm" styleClass="container_24">
+			<p:messages id="msgUpdate" showDetail="true" closable="true" />
+
+			<p:panel id="dataPanel" toggleable="true" styleClass="panel clearfix"
+				header="#{wds['fieldset.data']}">
+				<!-- Linha 1 -->
+				<p:outputLabel value="#{wds['autor.name']}" for="name"
+					styleClass="grid_3" />
+				<p:inputText id="name" value="#{autorController.entityUpdate.nome}"
+					required="true" label="#{wds['autor.name']}" styleClass="grid_21" />
+			</p:panel>
+
+			<p:outputPanel styleClass="clearfix panel">
+				<p:commandButton id="updateCommandButton" process="@this name"
+					action="#{autorController.update}" icon="ui-icon-disk"
+					value="#{wds['button.update']}" update="@form :autorTabView:searchForm:resultDataTable" 
+					styleClass="grid_4 push_8 ui_submitButton "/>
+				<p:commandButton value="#{wds['button.cancel']}" type="button"
+					icon="ui-icon-cancel" styleClass="grid_4 push_8 ui_submitButton"
+					onclick="autorTabs.remove(autorTabs.getActiveIndex())" />
+			</p:outputPanel>
+
+		</h:form>
+	</h:body>
+</ui:composition>

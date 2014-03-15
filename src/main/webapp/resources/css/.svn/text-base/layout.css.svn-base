@@ -1,0 +1,749 @@
+input.j_username, input.j_password {
+	-webkit-border-radius: 3px !important;
+	-moz-border-radius: 3px !important;
+	-ms-border-radius: 3px !important;
+	-o-border-radius: 3px !important;
+	border-radius: 3px !important;
+	-webkit-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset !important;
+	-moz-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset !important;
+	-ms-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset !important;
+	-o-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset !important;
+	box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset !important;
+	-webkit-transition: all 0.5s ease !important;
+	-moz-transition: all 0.5s ease !important;
+	-ms-transition: all 0.5s ease !important;
+	-o-transition: all 0.5s ease !important;
+	transition: all 0.5s ease !important;
+	background: /* url(#{request.contextPath}/resources/images/iconUser.png) */ no-repeat #eae7e7 !important;
+	border: 1px solid #c8c8c8 !important;
+	color: #777 !important;
+	font: 13px Helvetica, Arial, sans-serif !important;
+	margin: 0 0 10px !important;
+	padding: 15px 10px 15px 10px !important;
+	width: 100% !important;
+}
+
+.login {
+    background: url("/javax.faces.resource/images/ui-bg_highlight-soft_100_eeeeee_1x100.png.xhtml?ln=primefaces-ui-lightness") repeat-x scroll 50% top #EEEEEE;
+    border: 1px solid #E78F08;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+input.j_username:FOCUS, input.j_password:FOCUS  {
+		-webkit-box-shadow: 0 0 2px #F6A828 inset !important;
+	-moz-box-shadow: 0 0 2px #F6A828 inset !important;
+	-ms-box-shadow: 0 0 2px #F6A828 inset !important;
+	-o-box-shadow: 0 0 2px #F6A828 inset !important;
+	box-shadow: 0 0 2px #F6A828 inset !important;
+	background-color: #fff !important;
+	border: 1px solid #F6A828 !important;
+	outline: none !important;  
+}
+
+
+.uploadFile .fileupload-buttonbar {
+	padding: 0px 0px !important;
+	border: none;
+}
+
+.ui-datatable .ui-paginator, .ui-datatable .ui-paginator {
+	height: 22px !important;
+}
+
+.ui-paginator .ui-paginator-page, .ui-paginator .ui-paginator-pages, .ui-paginator .ui-paginator-next, .ui-paginator .ui-paginator-last, .ui-paginator .ui-paginator-first, .ui-paginator .ui-paginator-prev, .ui-paginator .ui-paginator-current {
+	padding: 0 5px !important;
+}
+
+.fileupload-buttonbar {
+	font-size: 11px;
+	width: 78%;
+}
+
+th.ui-state-default {
+	text-align: center !important;
+}
+
+.uploadFile table {
+	display: none !important;
+}
+
+.uploadFile .fileupload-content {
+	display: none !important;
+}
+
+/*
+Deixar componentes na tela de visualizar em negrito e alinhados a direita
+*/
+.columnShow {
+	text-align: right;
+	font-weight: bold;
+}
+
+span.ui-autocomplete>input.ui-autocomplete-input {
+	min-width: 10px;
+	width: 93% !important
+}
+
+label.ui-outputlabel {
+	height: 18px;
+	line-height: 24px;
+	max-height: 25px;
+	position: static;
+	text-align: right;
+    background: none !important;
+    color: black !important;
+    border: none !important;
+}
+
+span.ui-autocomplete>input.ui-autocomplete-input.ui-inputfield {
+	width: 93%;
+	min-width: 201px;
+}
+
+span.ui-autocomplete,textarea.ui-inputfield.ui-inputtextarea,span.ui_calendar,div.ui_textArea,input.ui-inputfield,div.ui-selectonemenu
+	{
+	margin-left: 0px;
+}
+
+span.ui_calendar {
+	min-width: 110px;
+}
+span.ui_calendar > input {
+	width: 83px;
+}
+
+span.ui-autocomplete {
+	min-width: 380px;
+}
+
+span.ui-autocomplete>button.ui-button-icon-only,span[class^="w"]>button.ui-button-icon-only
+	{
+	width: 25px;
+	height: 25px;
+	margin-top: 0px;
+	position: relative;
+	top: 0px;
+}
+
+button.ui-datepicker-trigger {
+	width: 25px;
+	height: 25px;
+	margin-top: 0px;
+	position: relative;
+	top: 0px;
+	border-radius: 0px 4px 4px 0px !important;
+}
+
+div.ui-layout-pane-center,div.ui-layout-unit-content.ui-widget-content>div.ui-tabs.ui-corner-all.ui-hidden-container.ui-tabs-top
+	{
+	border: 0 none;
+	padding: 0;
+}
+
+div.ui-tabs-panels>div.ui-tabs-panel.ui-widget-content.ui-corner-bottom
+	{
+	border-width: 0 1px 1px;
+}
+
+div.ui-layout-pane-center>div.ui-layout-unit-content.ui-widget-content {
+	padding: 0;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.hasDatepicker {
+	border-radius: 4px 0px 0px 4px !important;
+}
+
+table.ui-selectoneradio {
+	height: 25px;
+	/*  background: #FFFFFF; */
+	/*  border: 1px solid #CCCCCC; */
+	/*  box-shadow: 0 2px 2px #8F8F8F inset; */
+	/*  border-radius: 4px 4px 4px 4px; */
+}
+
+table.ui-selectoneradio tbody tr td {
+	display: inline-block;
+	vertical-align: text-top;
+	font-weight: bold;
+	margin-left:15px;
+ 	width: auto;
+}
+
+button.ui-button-text-only {
+	margin-right: 0;
+}
+
+button.ui_button[type=submit] {
+	min-width: 150px;
+	margin-bottom: 5px;
+}
+
+div.ui-fieldset-content div:first-child {
+	margin-right: 0.73%;
+}
+
+div.ui-fieldset-content div.col5:first-child {
+	margin-right: 0.5%;
+}
+
+fieldset>div.ui-fieldset-content {
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+}
+
+input.ui-autocomplete-input.ui-inputfield[disabled="disabled"] ~ button.ui-button.ui-widget.ui-state-default.ui-corner-right.ui-button-icon-only
+	{
+	visibility: hidden;
+}
+
+.w1,.w2,.w3,.w4,.w5,.w6,.w7,.w8,.w9,.w10,input,label[class^="w"] {
+	vertical-align: bottom;
+	display: inline-block;
+	position: relative;
+	margin-bottom: 5px;
+	border-collapse: separate;
+	border-spacing: 2;
+	box-sizing: border-box;
+	-moz-box-sizing: padding-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+}
+
+.col6,.col5,.col4 {
+	display: inline-table;
+	position: relative;
+}
+
+.col6 {
+	width: 67.3%
+}
+
+.col5 {
+	width: 48.3%
+}
+
+.col4 {
+	width: 31.4%
+}
+
+.w1 {
+	width: 10%
+}
+
+.w2 {
+	width: 20%
+}
+
+.w3 {
+	width: 30%
+}
+
+.w4 {
+	width: 40%
+}
+
+.w5 {
+	width: 50%
+}
+
+.w6 {
+	width: 60%
+}
+
+.w7 {
+	width: 70%
+}
+
+.w8 {
+	width: 80%
+}
+
+.w9 {
+	width: 90%
+}
+
+.w10 {
+	width: 100%
+}
+
+span.both.w1>input.hasDatepicker {
+	width: 67%;
+}
+
+span.both.w2>input.hasDatepicker {
+	width: 83%;
+}
+
+span.both.w3>input.hasDatepicker {
+	width: 89%;
+}
+
+span.both.w4>input.hasDatepicker {
+	width: 91.5%;
+}
+
+span.both.w5>input.hasDatepicker {
+	width: 93.3%;
+}
+
+span.both.w6>input.hasDatepicker {
+	width: 94.5%;
+}
+
+span.both.w7>input.hasDatepicker {
+	width: 95.2%;
+}
+
+span.both.w8>input.hasDatepicker {
+	width: 95.8%;
+}
+
+span.both.w9>input.hasDatepicker {
+	width: 96.3%;
+}
+
+span.both.w10>input.hasDatepicker {
+	width: 96.7%;
+}
+
+.col4 span.both.w1>input.hasDatepicker {
+	width: 0%;
+}
+
+.col4 span.both.w2>input.hasDatepicker {
+	width: 46%;
+}
+
+.col4 span.both.w3>input.hasDatepicker {
+	width: 64%;
+}
+
+.col4 span.both.w4>input.hasDatepicker {
+	width: 73.5%;
+}
+
+.col4 span.both.w5>input.hasDatepicker {
+	width: 78.3%;
+}
+
+.col4 span.both.w6>input.hasDatepicker {
+	width: 81.5%;
+}
+
+.col4 span.both.w7>input.hasDatepicker {
+	width: 84.2%;
+}
+
+.col4 span.both.w8>input.hasDatepicker {
+	width: 86.8%;
+}
+
+.col4 span.both.w9>input.hasDatepicker {
+	width: 88.3%;
+}
+
+.col4 span.both.w10>input.hasDatepicker {
+	width: 89.7%;
+}
+
+.col5 span.both.w1>input.hasDatepicker {
+	width: 30%;
+}
+
+.col5 span.both.w2>input.hasDatepicker {
+	width: 65%;
+}
+
+.col5 span.both.w3>input.hasDatepicker {
+	width: 77%;
+}
+
+.col5 span.both.w4>input.hasDatepicker {
+	width: 82.5%;
+}
+
+.col5 span.both.w5>input.hasDatepicker {
+	width: 86.3%;
+}
+
+.col5 span.both.w6>input.hasDatepicker {
+	width: 88.5%;
+}
+
+.col5 span.both.w7>input.hasDatepicker {
+	width: 90.2%;
+}
+
+.col5 span.both.w8>input.hasDatepicker {
+	width: 91.2%;
+}
+
+.col5 span.both.w9>input.hasDatepicker {
+	width: 92.3%;
+}
+
+.col5 span.both.w10>input.hasDatepicker {
+	width: 93%;
+}
+
+.col6 span.both.w1>input.hasDatepicker {
+	width: 48%;
+}
+
+.col6 span.both.w2>input.hasDatepicker {
+	width: 74%;
+}
+
+.col6 span.both.w3>input.hasDatepicker {
+	width: 83%;
+}
+
+.col6 span.both.w4>input.hasDatepicker {
+	width: 86.6%;
+}
+
+.col6 span.both.w5>input.hasDatepicker {
+	width: 89.6%;
+}
+
+.col6 span.both.w6>input.hasDatepicker {
+	width: 91.5%;
+}
+
+.col6 span.both.w7>input.hasDatepicker {
+	width: 92.7%;
+}
+
+.col6 span.both.w8>input.hasDatepicker {
+	width: 93.6%;
+}
+
+.col6 span.both.w9>input.hasDatepicker {
+	width: 94.3%;
+}
+
+.col6 span.both.w10>input.hasDatepicker {
+	width: 94.9%;
+}
+
+.r1 {
+	left: 10%
+}
+
+.r2 {
+	left: 20%
+}
+
+.r3 {
+	left: 30%
+}
+
+.r4 {
+	left: 40%
+}
+
+.r5 {
+	left: 50%
+}
+
+.r6 {
+	left: 60%
+}
+
+.r7 {
+	left: 70%
+}
+
+.r8 {
+	left: 80%
+}
+
+.r9 {
+	left: 90%
+}
+
+.r10 {
+	left: 100%
+}
+
+[class*="span"] {
+	float: left;
+	margin-left: 20px;
+}
+
+.clear {
+	margin-left: -20px;
+	*zoom: 1;
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+}
+
+.clear:after {
+	clear: both;
+}
+
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+	display: block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+.columnRight label {
+	text-align: right;
+	font-weight: bold !important;
+	float: right !important;
+}
+
+.ui-selectonemenu label {
+	float: left !important;
+	font-weight: normal !important;
+}
+
+.columnLeft {
+	text-align: left;
+	font-weight: bold;
+	!
+	important
+}
+
+.columnShow td {
+	font-weight: normal;
+	text-align: left;
+}
+
+.columnShow label {
+	text-align: right;
+	font-weight: bold;
+	!
+	important
+}
+
+.noBorders tr,.noBorders td {
+	background: none !important;
+	border: none !important;
+}
+
+.ui-autocomplete .ui-icon-triangle-1-s {
+	background-position: -160px -112px;
+	!
+	important
+}
+
+.ui-icon-bullet {
+	background-position: -82px -146px;
+}
+
+.ui-radiobutton {
+	line-height: 16px;
+	margin: 3px 0;
+	position: relative;
+	width: 4px;
+}
+
+.ui-radiobutton .ui-radiobutton-box {
+	border-radius: 10px 10px 10px 10px;
+	bottom: 0;
+	height: 13px;
+	left: 0;
+	line-height: 16px;
+	position: relative;
+	width: 13px;
+}
+
+.dataPicker {
+	margin-right: 100%;
+}
+
+.ui-paginator>* {
+	float: left
+}
+
+.ui-autocomplete.state {
+	margin-left: -10px; ! important;
+	margin-right: -2px;
+	!
+	important;
+}
+
+.stateP {
+	margin-left: -40px;
+	!
+	important;
+}
+
+.required {
+	text-align: right; ! important;
+	color: red;
+	!
+	important
+}
+
+.panel {
+	margin-bottom: 5px;
+}
+
+/* .ui-tabs .ui-tabs-panel {
+	padding: 5px !important;
+}  */
+
+td > .ui-button-icon-only {
+    height: 18px !important;
+    width: 18px !important;
+    top: 4px;
+}
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {
+    padding: 1px !important;
+    text-align: center;
+} 
+
+.collumnLeft {
+    text-align: left !important;
+} 
+
+/* .ui-widget-header {
+    border: 1px solid #FFFFFF !important;
+} */
+
+div.ui-widget-header.ui-datatable-scrollable-header{
+	background: url("/coalinha/javax.faces.resource/images/ui-bg_highlight-soft_100_eeeeee_1x100.png.xhtml?ln=primefaces-ui-lightness") repeat-x scroll 50% top #EEEEEE !important;
+    border: 0 none #DDDDDD !important;
+    color: #333333 !important;
+    font-weight: bold !important; 
+}
+
+.center-align {
+	text-align: center;
+}
+
+.fill-all-width {
+	width: 100%;
+}
+
+.fill-almost-all-width {
+	width: 90%;
+}
+
+.fill-almost-all-width input {
+	width: 90%;
+}
+
+.ui-panelmenu .ui-panelmenu-header a {
+	display: block;
+	font-size: 0.89em;
+	padding: 0.5em 0.5em 0.5em 2.2em;
+}
+
+.user {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-top: 8px;
+	margin-right: -2px;
+	border-radius: 4px 4px 0px 4px !important;
+}
+
+.user:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.logout {
+	border-radius: 0px 4px 4px 4px !important;
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-right: 20px;
+	margin-top: 8px;
+}
+
+.logout:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.ui-menu {
+	width: 104px;
+}
+
+input::-webkit-input-placeholder {
+	color: #A9A9A9 !important;
+}
+
+input:-moz-placeholder {
+	color: #A9A9A9 !important;
+}
+
+input:-ms-input-placeholder {
+	color: #A9A9A9 !important;
+}
+
+.menu-icon-search {
+	position: absolute !important;
+	top: 5px !important;
+	float: left !important;
+}
+
+.div-menu-search {
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+}
+
+.menuContent .ui-layout-unit-content {
+	overflow: hidden !important;
+}
+
+.menuInputText {
+	text-indent: 10px;
+}
+
+.grid_1,.grid_2,.grid_3,.grid_4,.grid_5,.grid_6,.grid_7,.grid_8,.grid_9,.grid_10,.grid_11,.grid_12,.grid_13,.grid_14,.grid_15,.grid_16,.grid_17,.grid_18,.grid_19,.grid_20,.grid_21,.grid_22,.grid_23,.grid_24
+	{
+	margin-bottom: 5px !important;
+}
+
+table.ui-picklist {
+	width: 100% !important;
+}
+
+table.ui-picklist button {
+	margin: 0 auto;
+}
+
+table.ui-picklist tr:first-child td:first-child,table.ui-picklist tr:first-child td:last-child
+	{
+	width: 45%;
+	text-align: left;
+}
+
+.ui-picklist-filter {
+	width: 100% !important;
+}
+
+table.ui-picklist ul.ui-picklist-list {
+	width: 100% !important;
+	height: 250px;
+}
+
+.ui-picklist-list li {
+	padding: 7px 2px !important;
+	border-bottom: 1px solid #DDD !important
+}
